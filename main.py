@@ -72,11 +72,3 @@ postfix = to_postfix(infix)
 print(f"infix: {infix}\npostfix: {postfix}")
 print(f"eval: {eval(infix.replace('^', '**'))}")
 print(f"eval: {eval_postfix(postfix)}")
-
-# while 1:
-#     try:
-#         ch = postfix.pop()
-#         print(f"{postfix} => {ch}")
-#     except IndexError:
-#         break
-#
