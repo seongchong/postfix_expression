@@ -67,7 +67,7 @@ def eval_postfix(postfix_list, debug=False):
     return out[0]
 
 
-infix = "(2*(-1-90/2)+2)/4+3"
+infix = "(2*(1-90/2)+2)/4+3"
 postfix = to_postfix(infix)
 print(f"infix: {infix}\npostfix: {postfix}")
 print(f"eval: {eval(infix.replace('^', '**'))}")
