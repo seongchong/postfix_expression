@@ -21,6 +21,12 @@ def to_postfix(expr, debug=False):
             if ch == '(':
                 # 괄호 (는 무조건 추가
                 operator.append(ch)
+            elif pos > 0 and ch in ['+', '-'] and expr[pos-1] == '(':
+                # (+ 와 (-를 처리: (-3/2) 이나 (+3/2) 등
+                num += ch
+
+            # -(A = (-1)*(A, (-(A = ((-1)*(A, +(A, (-(A 처리
+
             elif ch == ')':
                 # 괄호 )를 만나면 (가 나올때까지 팝하여 out에 넣기
                 while 1:
@@ -67,8 +73,10 @@ def eval_postfix(postfix_list, debug=False):
     return out[0]
 
 
-infix = "(2*(1-90/2)+2)/4+3"
-postfix = to_postfix(infix)
+infix = "(2*(-1-90/2)+2)/4+3"
+infix = "-(+(1-90/2)+2)/4+3"
+
+postfix = to_postfix(infix, debug=True)
 print(f"infix: {infix}\npostfix: {postfix}")
 print(f"eval: {eval(infix.replace('^', '**'))}")
 print(f"eval: {eval_postfix(postfix)}")
